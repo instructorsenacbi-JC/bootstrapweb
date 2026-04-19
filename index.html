@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM-XR | Simulación y Validación en Diseño Industrial</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* =========================
+           ESTILOS GENERALES
+        ========================== */
+        :root {
+            --dmxr-dark: #111827;
+            --dmxr-dark-2: #1f2937;
+            --dmxr-light: #f8fafc;
+            --dmxr-accent: #8b5cf6;
+            --dmxr-accent-2: #06b6d4;
+            --dmxr-gray: #6b7280;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--dmxr-gray);
+            max-width: 850px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .bg-soft {
+            background-color: var(--dmxr-light);
+        }
+
+        .bg-dark-custom {
+            background-color: var(--dmxr-dark);
+            color: white;
+        }
+
+        .text-accent {
+            color: var(--dmxr-accent);
+        }
+
+        .btn-accent {
+            background-color: var(--dmxr-accent);
+            border-color: var(--dmxr-accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #7c3aed;
+            border-color: #7c3aed;
+            color: white;
+        }
+
+        .btn-outline-accent {
+            border: 1px solid var(--dmxr-accent);
+            color: var(--dmxr-accent);
+        }
+
+        .btn-outline-accent:hover {
+            background-color: var(--dmxr-accent);
+            color: white;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* =========================
+           HERO / CAROUSEL
+        ========================== */
+        .carousel-item {
+            min-height: 85vh;
+            position: relative;
+        }
+
+        .hero-slide {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(17,24,39,0.70), rgba(17,24,39,0.70)),
+        url("img/hero-dmxr.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.hero-slide2 {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(17,24,39,0.70), rgba(17,24,39,0.70)),
+        url("img/hero-dmxr2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.hero-slide3 {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(17,24,39,0.70), rgba(17,24,39,0.70)),
+        url("img/hero-dmxr3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+        .hero-title {
+            font-size: clamp(2.1rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            max-width: 720px;
+            color: #e5e7eb;
+        }
+
+        .badge-project {
+            display: inline-block;
+            background-color: rgba(139, 92, 246, 0.18);
+            color: #ddd6fe;
+            border: 1px solid rgba(139, 92, 246, 0.45);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* =========================
+           BLOQUES DE VALOR
+        ========================== */
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .icon-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dmxr-accent), var(--dmxr-accent-2));
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 auto 16px auto;
+        }
+
+        /* =========================
+           FEATURE SECTION
+        ========================== */
+        .feature-image {
+            min-height: 360px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--dmxr-accent);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+        }
+
+        /* =========================
+           CARDS TECNOLOGÍAS
+        ========================== */
+        .tech-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    height: 100%;
+}
+
+.tech-card .card-top {
+    height: 220px; /* puedes subir o bajar este valor */
+    overflow: hidden;
+    background-color: #111827;
+}
+
+.card-top-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+        .tech-detail {
+            display: none;
+            margin-top: 12px;
+            color: #4b5563;
+        }
+
+        .tech-detail.show {
+            display: block;
+        }
+
+        .filter-btn.active {
+            background-color: var(--dmxr-accent);
+            color: white;
+            border-color: var(--dmxr-accent);
+        }
+
+        /* =========================
+           PROCESO / ACCORDION
+        ========================== */
+        .accordion-button:not(.collapsed) {
+            background-color: #ede9fe;
+            color: #3b0764;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        /* =========================
+           GALERÍA
+        ========================== */
+        .gallery-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            height: 100%;
+        }
+
+        .gallery-thumb {
+            min-height: 220px;
+            background: linear-gradient(135deg, #e5e7eb, #cbd5e1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #64748b;
+        }
+
+        /* =========================
+           MÉTRICAS
+        ========================== */
+        .metric-box {
+            background-color: white;
+            border-radius: 18px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .metric-box h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dmxr-accent);
+        }
+
+        /* =========================
+           CONTACTO
+        ========================== */
+        .contact-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+        footer a {
+            color: #c4b5fd;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* =========================
+           BOTÓN FLOTANTE
+        ========================== */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 999;
+            display: none;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--dmxr-accent);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+
+        .developer-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* puedes cambiar la proporción */
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.developer-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+    </style>
+</head>
+<body>
+
+    <!-- =========================================
+         NAVBAR
+         Componente Bootstrap: Navbar
+    ========================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">DM-XR</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#problema">Problema</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#solucion">Solución</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologías</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proceso">Proceso</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#uso">Uso</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <button class="btn btn-accent btn-sm go-section" data-target="#solucion">Ver proyecto</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================
+         HERO / CAROUSEL
+         Componente Bootstrap: Carousel
+    ========================================== -->
+    <section id="inicio">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="hero-slide">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8">
+                                    <span class="badge-project">Proyecto de Diseño Industrial + Tecnología</span>
+                                    <h1 class="hero-title">DM-XR</h1>
+                                    <p class="hero-text mb-4">
+                                        Dispositivo interactivo para simulación y validación en Diseño Industrial
+                                        mediante Realidad Extendida, orientado a reducir tiempos de iteración,
+                                        costos de prototipado y niveles de incertidumbre antes de la fabricación.
+                                    </p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <button class="btn btn-accent btn-lg go-section" data-target="#solucion">Conocer más</button>
+                                        <button class="btn btn-outline-light btn-lg go-section" data-target="#tecnologias">Ver tecnologías</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="hero-slide2">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8">
+                                    <span class="badge-project">Validación inmersiva de productos</span>
+                                    <h2 class="hero-title">Menos riesgo. Más precisión.</h2>
+                                    <p class="hero-text mb-4">
+                                        El sistema permite probar, modificar y analizar productos en escenarios
+                                        físicos y virtuales, fortaleciendo la toma de decisiones en etapas clave del diseño.
+                                    </p>
+                                    <button class="btn btn-accent btn-lg go-section" data-target="#impacto">Ver impacto</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <div class="hero-slide3">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8">
+                                    <span class="badge-project">AR · VR · MR · Unity · Electrónica</span>
+                                    <h2 class="hero-title">Una experiencia híbrida entre lo físico y lo virtual</h2>
+                                    <p class="hero-text mb-4">
+                                        DM-XR integra tecnologías inmersivas y un sistema físico modular para transformar
+                                        la enseñanza, la validación y la exploración del diseño de productos.
+                                    </p>
+                                    <button class="btn btn-outline-light btn-lg go-section" data-target="#uso">Explorar modo de uso</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- =========================================
+         BLOQUES DE VALOR
+    ========================================== -->
+    <section class="section-padding bg-soft">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Valor del proyecto</h2>
+                <p class="section-subtitle">
+                    DM-XR articula diseño industrial, simulación inmersiva y desarrollo tecnológico
+                    para fortalecer procesos de validación, aprendizaje y exploración formal, funcional y ergonómica.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card text-center">
+                        <div class="icon-circle"><i class="bi bi-badge-vr"></i></div>
+                        <h5>Simulación inmersiva</h5>
+                        <p class="mb-0">Permite validar productos en escenarios digitales antes de la fabricación física.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card text-center">
+                        <div class="icon-circle"><i class="bi bi-arrow-repeat"></i></div>
+                        <h5>Iteración rápida</h5>
+                        <p class="mb-0">Facilita ajustes ágiles sobre modelos tridimensionales y escenarios virtuales.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card text-center">
+                        <div class="icon-circle"><i class="bi bi-cpu"></i></div>
+                        <h5>Integración tecnológica</h5>
+                        <p class="mb-0">Combina hardware, software, sensores y plataformas XR en un sistema propio.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card text-center">
+                        <div class="icon-circle"><i class="bi bi-mortarboard"></i></div>
+                        <h5>Enfoque pedagógico</h5>
+                        <p class="mb-0">Fortalece el aprendizaje activo y la transferencia de conocimiento en diseño industrial.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         EL PROBLEMA
+    ========================================== -->
+    <section id="problema" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title">El problema</h2>
+                    <p>
+                        En los procesos tradicionales de diseño, la validación suele depender del prototipado físico,
+                        lo que incrementa costos, tiempos de iteración y consumo de materiales.
+                    </p>
+                    <p>
+                        Además, muchas tecnologías disponibles son cerradas, poco personalizables y difíciles de adaptar
+                        a necesidades pedagógicas o de investigación, especialmente en contextos académicos.
+                    </p>
+                    <p class="mb-0">
+                        DM-XR surge como una respuesta a esa necesidad: una alternativa propia, flexible y escalable
+                        para validar productos mediante experiencias físicas y virtuales.
+                    </p>
+                </div>
+
+                <div class="col-lg-6">
+                   
+    <img src="img/problema.jpg" alt="Problemas del prototipado tradicional"
+         class="img-fluid rounded shadow">
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         LA SOLUCIÓN
+    ========================================== -->
+    <section id="solucion" class="section-padding bg-soft">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="feature-image">
+                         <img src="img/solucion-prototipo.jpg" alt="Prototipo DM-XR"
+         class="img-fluid rounded shadow">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <h2 class="section-title">La solución: DM-XR</h2>
+                    <p>
+                        DM-XR es un dispositivo interactivo que integra tecnologías de Realidad Extendida
+                        como AR, VR y MR con una estructura física y electrónica propia.
+                    </p>
+                    <p>
+                        Su propósito es permitir la simulación, exploración y validación de productos
+                        en tiempo real, articulando entorno físico, visualización 3D, interacción gestual
+                        y experimentación inmersiva.
+                    </p>
+                    <p>
+                        El proyecto combina diseño modular, software en Unity 3D, sensores, control electrónico
+                        y recursos XR para fortalecer tanto el proceso de diseño como la enseñanza.
+                    </p>
+                    <button class="btn btn-accent go-section" data-target="#tecnologias">Explorar tecnologías</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         TECNOLOGÍAS
+         Componente Bootstrap: Cards + Modal + Buttons
+    ========================================== -->
+    <section id="tecnologias" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Tecnologías integradas</h2>
+                <p class="section-subtitle">
+                    El proyecto combina plataformas de desarrollo, sensores, electrónica y tecnologías XR
+                    para construir una experiencia híbrida de simulación y validación.
+                </p>
+            </div>
+
+            <!-- Filtros de tecnologías -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+                <button class="btn btn-outline-secondary filter-btn active" data-filter="all">Todas</button>
+                <button class="btn btn-outline-secondary filter-btn" data-filter="xr">XR</button>
+                <button class="btn btn-outline-secondary filter-btn" data-filter="software">Software</button>
+                <button class="btn btn-outline-secondary filter-btn" data-filter="hardware">Hardware</button>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Card 1 -->
+                <div class="col-md-6 col-lg-4 tech-item" data-category="xr">
+                    <div class="card tech-card">
+                        <div class="card-top">
+                             <img src="img/ar.jpg" alt="Realidad Aumentada en DM-XR"
+         class="card-top-image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Realidad Aumentada</h5>
+                            <p class="card-text">
+                                Permite superponer objetos virtuales sobre el entorno real para apoyar procesos de validación.
+                            </p>
+                            <button class="btn btn-outline-accent btn-sm toggle-detail">Ver más</button>
+                            <button class="btn btn-sm btn-dark ms-2" data-bs-toggle="modal" data-bs-target="#modalAR">Abrir</button>
+                            <div class="tech-detail">
+                                En el flujo AR se emplea una escena configurada en Unity 3D, una cámara web y un target
+                                para sobreponer el modelo virtual y manipularlo desde el sistema.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-md-6 col-lg-4 tech-item" data-category="xr">
+                    <div class="card tech-card">
+                        <div class="card-top">
+                            <img src="img/vr.jpg" alt="Prototipo físico DM-XR"
+         class="card-top-image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Realidad Virtual</h5>
+                            <p class="card-text">
+                                Genera un entorno inmersivo para explorar productos tridimensionales y controlar su interacción.
+                            </p>
+                            <button class="btn btn-outline-accent btn-sm toggle-detail">Ver más</button>
+                            <div class="tech-detail">
+                                El modo VR permite al usuario visualizar e interactuar con el modelo 3D en un espacio inmersivo,
+                                articulando visor, sensores y el DM-XR como medio físico.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-md-6 col-lg-4 tech-item" data-category="software">
+                    <div class="card tech-card">
+                        <div class="card-top">
+                            <img src="img/unity.jpg" alt="Prototipo físico DM-XR"
+         class="card-top-image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Unity 3D</h5>
+                            <p class="card-text">
+                                Plataforma principal para construir entornos virtuales, interacción y simulación del sistema.
+                            </p>
+                            <button class="btn btn-outline-accent btn-sm toggle-detail">Ver más</button>
+                            <div class="tech-detail">
+                                En Unity 3D se importan los modelos, se ajusta la escena y se activan los entornos
+                                correspondientes para AR o VR según la necesidad del usuario.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-md-6 col-lg-4 tech-item" data-category="hardware">
+                    <div class="card tech-card">
+                        <div class="card-top">
+                            <img src="img/placas.jpg" alt="Prototipo físico DM-XR"
+         class="card-top-image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Electrónica y placas</h5>
+                            <p class="card-text">
+                                El sistema incorpora una base electrónica con placas, sensores, conectores y lógica de control.
+                            </p>
+                            <button class="btn btn-outline-accent btn-sm toggle-detail">Ver más</button>
+                            <div class="tech-detail">
+                                En fases iniciales se emplearon Arduino UNO y Nano, además de una evolución hacia una
+                                arquitectura electrónica más personalizada y escalable.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col-md-6 col-lg-4 tech-item" data-category="hardware">
+                    <div class="card tech-card">
+                        <div class="card-top">
+                            <img src="img/sensores.jpg" alt="Prototipo físico DM-XR"
+         class="card-top-image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Sensores de movimiento</h5>
+                            <p class="card-text">
+                                Capturan orientación, movimientos y gestos para enriquecer la interacción con los objetos virtuales.
+                            </p>
+                            <button class="btn btn-outline-accent btn-sm toggle-detail">Ver más</button>
+                            <div class="tech-detail">
+                                Se integran elementos como Leap Motion y sensores microelectromecánicos para detectar
+                                movimientos y aportar datos a la simulación XR.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col-md-6 col-lg-4 tech-item" data-category="xr software">
+                    <div class="card tech-card">
+                        <div class="card-top">
+                            <img src="img/programacion.jpg" alt="Prototipo físico DM-XR"
+         class="card-top-image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Librerías XR y programación</h5>
+                            <p class="card-text">
+                                El proyecto integra C#, C/C++ y librerías especializadas para enlazar hardware y simulación.
+                            </p>
+                            <button class="btn btn-outline-accent btn-sm toggle-detail">Ver más</button>
+                            <div class="tech-detail">
+                                Se emplean plugins como SteamVR, Vuforia, Ultraleap y Oculus SDK para habilitar compatibilidad
+                                con distintos escenarios de interacción.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         PROCESO DE DESARROLLO
+         Componente Bootstrap: Accordion
+    ========================================== -->
+    <section id="proceso" class="section-padding bg-soft">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Proceso de desarrollo</h2>
+                <p class="section-subtitle">
+                    El proyecto fue desarrollado por fases, desde la revisión técnica inicial hasta la validación funcional
+                    del sistema en escenarios educativos.
+                </p>
+            </div>
+
+            <div class="accordion" id="accordionProceso">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fase1">
+                            Fase 1. Revisión de requisitos técnicos
+                        </button>
+                    </h2>
+                    <div id="fase1" class="accordion-collapse collapse show" data-bs-parent="#accordionProceso">
+                        <div class="accordion-body">
+                            Se evaluaron necesidades funcionales, componentes clave, hardware compatible,
+                            plataformas de desarrollo y criterios de integración tecnológica.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fase2">
+                            Fase 2. Diseño preliminar del prototipo
+                        </button>
+                    </h2>
+                    <div id="fase2" class="accordion-collapse collapse" data-bs-parent="#accordionProceso">
+                        <div class="accordion-body">
+                            Se generaron bocetos, esquemas y estructuras modulares del sistema, además
+                            de la primera organización del hardware y las carcasas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fase3">
+                            Fase 3. Construcción del prototipo
+                        </button>
+                    </h2>
+                    <div id="fase3" class="accordion-collapse collapse" data-bs-parent="#accordionProceso">
+                        <div class="accordion-body">
+                            Se realizó selección, ensamblaje y conexión de componentes electrónicos,
+                            sensores, cables, conectores y medios físicos del sistema.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fase4">
+                            Fase 4. Desarrollo del software
+                        </button>
+                    </h2>
+                    <div id="fase4" class="accordion-collapse collapse" data-bs-parent="#accordionProceso">
+                        <div class="accordion-body">
+                            En Unity 3D y Visual Studio se construyeron escenas, scripts, integración de sensores
+                            y flujos de simulación XR para interacción en tiempo real.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fase5">
+                            Fase 5. Validación y pruebas
+                        </button>
+                    </h2>
+                    <div id="fase5" class="accordion-collapse collapse" data-bs-parent="#accordionProceso">
+                        <div class="accordion-body">
+                            Se efectuaron pruebas técnicas, funcionales y de usabilidad con usuarios,
+                            permitiendo ajustes y consolidación del sistema.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         MODO DE USO
+         Componente Bootstrap: Tabs
+    ========================================== -->
+    <section id="uso" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Modo de uso</h2>
+                <p class="section-subtitle">
+                    El sistema puede operar en diferentes escenarios de simulación, especialmente
+                    mediante flujos de trabajo en AR y VR.
+                </p>
+            </div>
+
+            <ul class="nav nav-tabs justify-content-center mb-4" id="usoTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="ar-tab" data-bs-toggle="tab" data-bs-target="#ar-pane" type="button" role="tab">
+                        Modo AR
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="vr-tab" data-bs-toggle="tab" data-bs-target="#vr-pane" type="button" role="tab">
+                        Modo VR
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="usoTabsContent">
+                <div class="tab-pane fade show active" id="ar-pane" role="tabpanel">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="feature-image">
+                                <img src="img/uso-ar.jpg" alt="Flujo de uso en realidad aumentada"
+         class="img-fluid rounded shadow">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4>Flujo básico en Realidad Aumentada</h4>
+                            <ol>
+                                <li>Iniciar la aplicación en Unity 3D.</li>
+                                <li>Importar y ajustar el modelo 3D dentro del escenario.</li>
+                                <li>Seleccionar la escena configurada para AR.</li>
+                                <li>Preparar target impreso, cámara web y conexiones del DM-XR.</li>
+                                <li>Ejecutar la simulación y validar el producto sobre el entorno real.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="vr-pane" role="tabpanel">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="feature-image">
+                                <img src="img/uso-vr.jpg" alt="Flujo de uso en realidad virtual"
+         class="img-fluid rounded shadow">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4>Flujo básico en Realidad Virtual</h4>
+                            <ol>
+                                <li>Iniciar el proyecto en Unity 3D.</li>
+                                <li>Importar el modelo y configurar escena VR.</li>
+                                <li>Preparar visor, sensores y espacio de desplazamiento.</li>
+                                <li>Conectar el DM-XR al computador.</li>
+                                <li>Ejecutar el entorno inmersivo y manipular el objeto virtual.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         IMPACTO / RESULTADOS
+    ========================================== -->
+    <section id="impacto" class="section-padding bg-soft">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Impacto y resultados</h2>
+                <p class="section-subtitle">
+                    El proyecto aporta valor en dimensiones académicas, tecnológicas y metodológicas,
+                    al facilitar nuevas formas de validar, enseñar y experimentar con diseño.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="metric-box">
+                        <h3>XR</h3>
+                        <p class="mb-0">Integración inmersiva de AR, VR y MR para simulación y validación.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="metric-box">
+                        <h3>3D</h3>
+                        <p class="mb-0">Manipulación y análisis de modelos tridimensionales en tiempo real.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="metric-box">
+                        <h3>Modular</h3>
+                        <p class="mb-0">Arquitectura adaptable con proyección de crecimiento futuro.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="metric-box">
+                        <h3>Aprendizaje</h3>
+                        <p class="mb-0">Fortalece la experiencia pedagógica y la transferencia de conocimiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         GALERÍA VISUAL
+         Componente Bootstrap: Cards + Modal
+    ========================================== -->
+    <section id="galeria" class="section-padding bg-dark-custom">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Galería del proyecto</h2>
+                <p class="section-subtitle text-light">
+                    Espacio visual para mostrar prototipo, integración electrónica, uso en XR,
+                    diagramas y validaciones del sistema.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card gallery-card">
+                        <img src="img/prototipo-fisico.jpg" alt="Prototipo físico DM-XR"
+         class="img-fluid w-100 h-100 object-fit-cover">
+                        <div class="card-body">
+                            <h5 class="card-title">Prototipo físico</h5>
+                            <p class="card-text">Visualización del dispositivo, estructura general y configuración modular.</p>
+                            <button class="btn btn-sm btn-accent" data-bs-toggle="modal" data-bs-target="#modalGaleria1">Ampliar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card gallery-card">
+                        <img src="img/circuito.jpg" alt="Circuito electrónico DM-XR"
+         class="img-fluid w-100 h-100 object-fit-cover">
+                        <div class="card-body">
+                            <h5 class="card-title">Circuito y electrónica</h5>
+                            <p class="card-text">Integración de componentes, sensores y lógica electrónica del sistema.</p>
+                            <button class="btn btn-sm btn-accent" data-bs-toggle="modal" data-bs-target="#modalGaleria2">Ampliar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card gallery-card">
+                        <img src="img/uso-xr.jpg" alt="Uso del sistema DM-XR en XR"
+         class="img-fluid w-100 h-100 object-fit-cover">
+                        <div class="card-body">
+                            <h5 class="card-title">Uso en XR</h5>
+                            <p class="card-text">Interacción del usuario con escenarios inmersivos y modelos virtuales.</p>
+                            <button class="btn btn-sm btn-accent" data-bs-toggle="modal" data-bs-target="#modalGaleria3">Ampliar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         SOBRE EL DESARROLLADOR
+    ========================================== -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-4 text-center">
+                    <div class="feature-image" style="min-height: 280px;">
+                        <div class="developer-image-wrapper">
+    <img src="img/Diseñador_Industrial.jpg" alt="Jonny Cardona, desarrollador del proyecto"
+         class="developer-image">
+</div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <h2 class="section-title">Sobre el Diseñador</h2>
+                    <p>
+                        Jonny Cardona, Diseñador Industrial y desarrollador de tecnología,
+                        enfocado en proyectos que integran innovación, simulación, realidad extendida,
+                        electrónica, diseño de producto y experiencias de aprendizaje.
+                    </p>
+                    <p class="mb-0">
+                        DM-XR representa una convergencia entre investigación aplicada, diseño industrial,
+                        desarrollo experimental y construcción de soluciones tecnológicas con proyección académica e industrial.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         CONTACTO
+         Componente Bootstrap: Form
+    ========================================== -->
+    <section id="contacto" class="section-padding bg-soft">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-subtitle">
+                    Esta sección puede servir como cierre del proyecto y como punto de contacto profesional
+                    para futuras presentaciones, investigaciones o colaboraciones.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-card">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="correo" class="form-label">Correo</label>
+                                    <input type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com">
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="mensaje" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje"></textarea>
+                                </div>
+
+                                <div class="col-12 d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-accent">Enviar mensaje</button>
+                                    <button type="button" class="btn btn-outline-secondary go-section" data-target="#inicio">Volver al inicio</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>DM-XR</h5>
+                    <p class="text-light mb-0">
+                        Dispositivo interactivo para simulación y validación en Diseño Industrial
+                        mediante Realidad Extendida.
+                    </p>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5>Enlaces</h5>
+                    <p class="mb-1"><a href="#problema">Problema</a></p>
+                    <p class="mb-1"><a href="#solucion">Solución</a></p>
+                    <p class="mb-1"><a href="#tecnologias">Tecnologías</a></p>
+                    <p class="mb-1"><a href="#contacto">Contacto</a></p>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5>Autor</h5>
+                    <p class="mb-1">Jonny Cardona</p>
+                    <p class="mb-1">Diseñador Industrial y desarrollador de tecnología</p>
+                    <p class="mb-0">2026</p>
+                </div>
+            </div>
+
+            <hr class="border-secondary my-4">
+
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 DM-XR. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         BOTÓN VOLVER ARRIBA
+    ========================================== -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- =========================================
+         MODALES
+         Componente Bootstrap: Modal
+    ========================================== -->
+
+    <!-- Modal AR -->
+    <div class="modal fade" id="modalAR" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Realidad Aumentada en DM-XR</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        En el flujo AR, el usuario inicia la aplicación en Unity 3D, importa el modelo, ajusta el escenario
+                        y utiliza una escena configurada para Realidad Aumentada. Luego prepara el target impreso,
+                        conecta el DM-XR y la cámara web, y ejecuta la validación del producto sobre el entorno real.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Galería 1 -->
+    <div class="modal fade" id="modalGaleria1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Prototipo físico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Aquí puedes insertar una imagen real del prototipo DM-XR, una vista renderizada,
+                        o una fotografía del ensamblaje y la carcasa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Galería 2 -->
+    <div class="modal fade" id="modalGaleria2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Circuito y electrónica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Aquí puedes mostrar diagramas electrónicos, PCB, lista de materiales o esquemas
+                        que evidencien la integración física del sistema.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Galería 3 -->
+    <div class="modal fade" id="modalGaleria3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Uso en XR</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Aquí puedes integrar capturas del usuario operando el sistema en escenarios AR o VR,
+                        reforzando la lógica de validación y simulación inmersiva.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* =====================================================
+           FUNCIÓN 1: NAVEGACIÓN SUAVE A SECCIONES
+           - Se activa desde botones y puede servir como evidencia
+           - Acción diferente: redireccionar dentro de la misma vista
+        ====================================================== */
+        document.querySelectorAll('.go-section').forEach(button => {
+            button.addEventListener('click', function () {
+                const targetSelector = this.getAttribute('data-target');
+                const targetElement = document.querySelector(targetSelector);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        /* =====================================================
+           FUNCIÓN 2: MOSTRAR / OCULTAR DETALLES TÉCNICOS
+           - Acción diferente: expandir contenido
+           - Se usa en tarjetas de tecnologías
+        ====================================================== */
+        document.querySelectorAll('.toggle-detail').forEach(button => {
+            button.addEventListener('click', function () {
+                const detail = this.parentElement.querySelector('.tech-detail');
+
+                if (detail.classList.contains('show')) {
+                    detail.classList.remove('show');
+                    this.textContent = 'Ver más';
+                } else {
+                    detail.classList.add('show');
+                    this.textContent = 'Ver menos';
+                }
+            });
+        });
+
+        /* =====================================================
+           FUNCIÓN 3: FILTRADO DE TECNOLOGÍAS
+           - Acción diferente: filtrar contenido visible
+           - Permite mostrar XR, software, hardware o todo
+        ====================================================== */
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const techItems = document.querySelectorAll('.tech-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const filter = this.getAttribute('data-filter');
+
+                // Actualiza estado visual del botón activo
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filtra elementos
+                techItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+
+                    if (filter === 'all' || category.includes(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        /* =====================================================
+           BOTÓN VOLVER ARRIBA
+           - Extra útil para experiencia de usuario
+        ====================================================== */
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
